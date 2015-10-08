@@ -1,0 +1,28 @@
+{
+  "name": "neuron-normalize",
+  "version": "1.0.0",
+  "description": "neuron-normalize",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec ./test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/neuron-js/neuron-normalize.git"
+  },
+  "keywords": [
+    "neuron-normalize"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "author": "neuron-js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neuron-js/neuron-normalize/issues"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*"
+  }
+}
