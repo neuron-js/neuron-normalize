@@ -16,8 +16,40 @@ $ npm install neuron-normalize --save
 ## Usage
 
 ```js
-var neuron_normalize = require('neuron-normalize');
+var normalize = require('neuron-normalize')(options);
 ```
+
+### normalize.parse(id)
+
+### normalize.to_url(id) -> parse -> url
+
+- id `String` description
+
+Returns the dddd
+
+### normalize.to_package(pathname)
+
+- pathname `Path` the absolute pathname of a file
+
+Returns `Object`
+    - package: `goods@1.0.0`
+    - package_name: `goods`
+    - id: `goods@1.0.0/style/list.css`
+    - version: `1.0.0`, default to `'*'`
+    - path: `/style/list.css`, default to `/<package-name>.js`
+
+```
+normalize.parse('zepto');
+->
+{
+    package: 'zepto@*',
+    package_name: 'zepto',
+    id: 'zepto@*/zepto.js', // main entry -> <package-name>.js
+    version: '*',
+    path: '/zepto.js'
+}
+```
+
 
 ## License
 

@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "neuron-js",
+  "author": "neuron.js",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/neuron-js/neuron-normalize/issues"
