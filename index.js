@@ -1,21 +1,55 @@
+'use strict';
+var path = require('path');
 
-var versionRegex = /@((?:\d\.)*\d)/;
-var pathRegex = /\/(?:.*\/).*/;
+var normalizer = {};
+
+normalizer.to_url = function id_to_url(id) {
+  if(!id) {
+    return new Error('missing id param.');
+  }
+  var packageInfo = this.parse(id);
+  return path.join(this.rootPath, packageInfo.id.replace(/\@/,'/'));
+};
+
+/*
+ * function parse
+ * desc:
+ * params:
+ * @id: package id, 'zepto@1.0.0/lib/zepto.js'
+ */
+
+normalizer.to_package = function url_to_package(pathname) {
+  if(!pathname) {
+    return new Error('missing pathname param.');
+  }
+
+  var rawPath = path.relative(this.rootPath, pathname);
+  var parts = rawPath.split('/');
+
+  var package_name = parts.shift();
+  var version = parts.shift();
+  var relativePath = '/' + parts.join('/');
+
+  return {
+    package_name: package_name,
+    version: version,
+    path: relativePath,
+    package: [package_name, '@', version].join(''),
+    id: [package_name, '@', version, relativePath].join('')
+  };
+};
 
 
 /*
  * function parse
  * params:
- * @id: package id, 'zepto@1.2.0/lib/zepto.js'
- * TBD:
- * 1.config.js, neuron.js whitelist
- * 2.warnings for empty param
+ * @id: package id, 'zepto@1.0.0/lib/zepto.js'
  */
-function parse(id) {
+normalizer.parse = function parse(id) {
+  var versionRegex = /@((?:\d\.)*\d)/;
+  var pathRegex = /\/(?:.*\/).*/;
   var versionMatches = id.match(versionRegex);
   var relativePathMatches = id.match(pathRegex);
-
-  // var package_name = versionMatches ? id.substring(0, versionMatches.index) : (relativePathMatches ? id.substring(0, relativePathMatches.index) : id);
 
   var package_name = id;
   if(versionMatches) {
@@ -34,6 +68,17 @@ function parse(id) {
     version: version,
     path: relativePath
   };
-}
+};
 
-module.exports.parse = parse;
+
+module.exports = function(options){
+  options = options || {};
+  normalizer.rootPath = options.root || '/';
+
+  // check for absolute path
+  if(!path.isAbsolute(normalizer.rootPath)) {
+    normalizer.rootPath = '/' + normalizer.rootPath;
+  }
+
+  return normalizer;
+};

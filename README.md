@@ -27,7 +27,11 @@ var normalize = require('neuron-normalize')(options);
 
 Returns the dddd
 
-### normalize.to_package(pathname)
+### normalize.to_package(pathname) // /path/to/lib/zepto.js
+
+```
+/mod/zepto/*/zepto.js
+```
 
 - pathname `Path` the absolute pathname of a file
 

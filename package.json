@@ -24,5 +24,8 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
