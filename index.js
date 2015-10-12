@@ -5,7 +5,7 @@ var normalizer = {};
 
 normalizer.to_url = function id_to_url(id) {
   if(!id) {
-    return new Error('missing id param.');
+    return undefined;
   }
   var packageInfo = this.parse(id);
   return path.join(this.rootPath, packageInfo.id.replace(/\@/,'/'));
@@ -20,7 +20,7 @@ normalizer.to_url = function id_to_url(id) {
 
 normalizer.to_package = function url_to_package(pathname) {
   if(!pathname) {
-    return new Error('missing pathname param.');
+    return undefined;
   }
 
   var rawPath = path.relative(this.rootPath, pathname);
@@ -73,7 +73,11 @@ normalizer.parse = function parse(id) {
 
 module.exports = function(options){
   options = options || {};
-  normalizer.rootPath = options.root || '/';
+  if(!options.root) {
+    throw 'Error: Params missing \'root\' during initialization.';
+  }
+
+  normalizer.rootPath = options.root;
 
   // check for absolute path
   if(!path.isAbsolute(normalizer.rootPath)) {
