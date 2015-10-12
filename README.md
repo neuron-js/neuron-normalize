@@ -57,9 +57,13 @@ normalize.to_package('/mod/zepto/*/zepto.js');
 
 type: `Object`
     - package: `<module_name>@<version>`
+
     - package_name: `<module_name>`
+
     - id: `<module_name>@<version><file_path>`
+
     - version: `<major>.<minor>.<patch>`, default to `'*'`
+
     - path: `/path/to/<filename>.<ext>`, default to `/<package-name>.js`
 
 ## API
