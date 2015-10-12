@@ -30,13 +30,7 @@ normalizer.to_package = function url_to_package(pathname) {
   var version = parts.shift();
   var relativePath = '/' + parts.join('/');
 
-  return {
-    package_name: package_name,
-    version: version,
-    path: relativePath,
-    package: [package_name, '@', version].join(''),
-    id: [package_name, '@', version, relativePath].join('')
-  };
+  return this.parse([package_name, '@', version, relativePath].join(''));
 };
 
 
@@ -46,7 +40,7 @@ normalizer.to_package = function url_to_package(pathname) {
  * @id: package id, 'zepto@1.0.0/lib/zepto.js'
  */
 normalizer.parse = function parse(id) {
-  var versionRegex = /@((?:\d\.)*\d)/;
+  var versionRegex = /@((?:\d\.)*\d||\*)/;
   var pathRegex = /\/(?:.*\/).*/;
   var versionMatches = id.match(versionRegex);
   var relativePathMatches = id.match(pathRegex);

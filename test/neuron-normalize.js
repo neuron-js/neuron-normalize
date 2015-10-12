@@ -88,6 +88,32 @@ describe('parse function', function(){
     });
   });
 
+  describe('parse id \'zepto@*/zepto.js\'', function(){
+    beforeEach(function(){
+      result = normalizer.parse('zepto@*/zepto.js');
+    });
+
+    it('returns a object which property \'version\' equals \'*\'', function() {
+      expect(result.version).to.equal('*');
+    });
+
+    it('returns a object which property \'path\' equals \'/lib/zepto.js\'', function() {
+      expect(result.path).to.equal('/zepto.js');
+    });
+
+    it('returns a object which property \'package_name\' equals \'zepto\'', function() {
+      expect(result.package_name).to.equal('zepto');
+    });
+
+    it('returns a object which property \'package\' equals \'zepto@*\'', function() {
+      expect(result.package).to.equal('zepto@*');
+    });
+
+    it('returns a object which property \'id\' equals \'zepto@*/lib/zepto.js\'', function() {
+      expect(result.id).to.equal('zepto@*/zepto.js');
+    });
+  });
+
   describe('parse id \'zepto/lib/zepto.js\'', function(){
     beforeEach(function(){
       result = normalizer.parse('zepto/lib/zepto.js');
