@@ -36,7 +36,7 @@ normalize.parse('zepto');
 
 normalize.to_url('zepto');
 ->
-'/mod/zepto/zepto.js'
+'/mod/zepto/*/zepto.js'
 
 normalize.to_package('/mod/zepto/*/zepto.js');
 ->
