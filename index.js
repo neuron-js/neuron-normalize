@@ -71,12 +71,8 @@ module.exports = function(options){
     throw 'Error: Params missing \'root\' during initialization.';
   }
 
-  normalizer.rootPath = options.root;
-
-  // check for absolute path
-  if(!path.isAbsolute(normalizer.rootPath)) {
-    normalizer.rootPath = '/' + normalizer.rootPath;
-  }
+  // for absolute path
+  normalizer.rootPath = path.resolve('/', options.root);
 
   return normalizer;
 };
