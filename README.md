@@ -6,7 +6,7 @@
 # neuron-normalize
 
 <!-- description -->
-A small module to normalize a url to a formatted object.
+Normalize a module id to a url to a standard pathname.
 
 ## Install
 
