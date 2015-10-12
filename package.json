@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "neuron.js",
+  "author": "zisasign <zephyrisalive@gmail.com> (https://github.com/qiyuan-wang)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/neuron-js/neuron-normalize/issues"
